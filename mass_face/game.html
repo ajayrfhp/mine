@@ -1,0 +1,64 @@
+<html>
+<head>
+<script>
+function f()
+	{
+  f.count = ++f.count || 1 ;
+  }
+function fn()
+{
+var nw;
+
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+	nw=xmlhttp.responseText;
+	alert(nw);
+	/*if(nw=='true')
+{
+		
+		if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+	}
+  }
+
+xmlhttp.open("GET","http://localhost/my_face/other.php",true);
+xmlhttp.send();
+		}
+	*/
+	}
+ }
+xmlhttp.open("GET","http://localhost/my_face/my.php",true);
+xmlhttp.send();
+}
+</script>
+</head>
+<body>
+
+<form> 
+<input type="button" onclick="fn()" value="click"/>
+</form>
+<p>Suggestions: <span id="txtHint"></span></p>
+</body>1
+</html>

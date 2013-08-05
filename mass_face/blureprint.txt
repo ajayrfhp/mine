@@ -1,0 +1,5 @@
+1.initiation of camera . 
+2.shoot.
+3.send image to php
+4.use php to store image in a location.
+
