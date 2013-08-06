@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Listing the entries in a directory</title>
+</head>
+<body>
+<ul id="filelist"></ul>
+<script>
+// Take care of vendor prefixes.
+window.requestFileSystem = window.requestFileSystem ||window.webkiRequestFileSystem;
+/**
+* Returns an Array from a NodeList or other array-like object.
+*
+* @param {NodeList} list An array-like object to transform into an array.
+* @return {Array} The list as an array.
+*/
+function toArray(list) {
+return Array.prototype.slice.call(list || [], 0);
+}
+/**
+* Renders a list of file/folder entries.
+*
+* @param {Array<FileEntry|DirectoryEntry>} entries A list of file/folders.
+*/
+function listResults(entries) {
+// Use a document fragment. Will cause only one reflow on append :)
+var fragment = document.createDocumentFragment();
+entries.forEach(function(entry, i) {
+var img = entry.isDirectory ? '<img src="folder-icon.gif">' :
+'<img src="file-icon.gif">';
+var li = document.createElement('li');
+li.innerHTML = [img, '<span>', entry.name, '</span>'].join('');
+fragment.appendChild(li);
+});
+document.querySelector('#filelist').appendChild(fragment);
+}
+window.requestFileSystem(TEMPORARY, 1024*1024 /*1MB*/, function(fs) {
+var dirReader = fs.root.createReader();
+var entries = [];
+// Call the reader.readEntries() until no more results are returned.
+var readEntries = function() {
+dirReader.readEntries(function(results) {
+// If no more results are returned, we're done.
+if (!results.length) {
+// Sort list by name of entry.
+entries.sort(function(a, b) {
+return a.name < b.name ? -1 :
+b.name < a.name ? 1 : 0;
+});
+listResults(entries); // Render the list.
+} else {
+// Add in these results to the current list.
+entries = entries.concat(toArray(results));
+readEntries();
+}
+}, onError);
+};
+readEntries(); // Start reading the directory.
+}, onError);
+</script>
+</body>
+</html>

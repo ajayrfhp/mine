@@ -1,0 +1,50 @@
+node.js
+server side js
+not a language
+instead of making the client check for updates
+server should inform sites push the notifiactions
+non blocking-event driven io
+Event driven Architecture
+based on creation,detection and reaction to changes in state
+non blocking io 
+allows other process are allowed to continue b4 org process complted
+
+Thread based models:
+	traditional .server recieves a request ,process it and gives back response
+thread is open ,recieves connection 
+once it completes it remains closed
+thread is open to connections
+
+Node has single thread looped event looped
+	thread opens
+	recieves connection
+	sends the request
+	den opens again
+the asynch way : )
+	requires callback function
+concurrent users
+chat messaging bw multiple clientes
+where it should not be used
+	not useful crud
+	
+	
+client side javascript global namespace
+ security leaks
+ express.js web dev framework
+ defines page handlers 
+ routes-interaction bw methods and functions of an app and ulr of tat calls those methods and function
+ 
+ 
+ routing is done using http 
+ verbs
+ 
+ allows messagew to be sent connected to a single node server
+ socket.io (y)
+ web sockets provides bi directional communications channel over a single tc connection
+ std way for server to send messages to client without being requested
+ 
+ requires only the http handshake 
+ 
+ 
+ 
+ 

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="700" height="450" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+i=10;
+var timer=setInterval(
+function()
+{
+ctx.rect(i,20,150,100);
+ctx.stroke();
+i=i+1;
+},500);
+</script>
+
+</body>
+</html>

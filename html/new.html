@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>music player</music>
+<!-- Uncomment the following tag when developing on a local or intranet computer -->
+     <!-- <meta http-equiv-'X-UA-Compatible' content="ie9" />  -->	
+  
+	<script type="text/javascript">
+	function playaudio()
+		{
+		if(window.HTMLAudioElement)
+			{
+
+				var odio=document.getElementById("myaudio");
+				var btn=document.getElementById("play");
+				var fle=document.getElementById('myfile');
+				if(odio.paused)
+					{
+					odio.play();
+					btn.textContext="Pause";
+					}
+				else
+					{
+					odio.pause();
+					btn.textContext="Play";
+					}
+			}
+		}
+	
+	</script>
+	</head>
+
+<body>
+	<p>
+	<input type="file" name="myfile" value="choose song"/>
+</p>
+basdasdasdasdasdasdasdasdasdsd
+<audio id="myaudio" >
+html5 not supported
+</audio>
+<button id="play" onclick="playaudio();">
+play
+</button>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <title>HTML5 Audio Player </title>    
+    
+    <script type="text/javascript">
+        function playAudio() {
+          if (window.HTMLAudioElement) {
+                    var oAudio = document.getElementById('myaudio');
+                    var btn = document.getElementById('play'); 
+                    var audioURL = document.getElementById('audiofile'); 
+					oAudio.src = audioURL.value;
+                        currentFile = audioURL.value;                       
+                 
+                 
+                   if (oAudio.paused) {
+                        oAudio.play();
+                        btn.textContent = "Pause";
+                    }
+                    else {
+                        oAudio.pause();
+                        btn.textContent = "Play";
+                    }
+                
+                
+            }
+        }
+    </script>
+  </head>
+  
+  <body>
+    <p>
+      <input type="text" id="audiofile"  value="demo.mp3" />
+    </p>
+    <audio id="myaudio">
+      HTML5 audio not supported
+    </audio>
+    <button id="play" onclick="playAudio();">
+      Play
+    </button>
+   
+  </body>
+
+</html>
+

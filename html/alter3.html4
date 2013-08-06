@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<script type="text/javascript">
+var canvas;
+var draw;
+var width;
+var height;
+var x=10;
+var y=10;
+var i=0;
+var j=0.1;
+function init()
+	{
+	canvas=document.getElementById('mycanvas');
+	height=canvas.height;
+	width=canvas.width;
+	draw=canvas.getContext('2d');
+	setInterval(redraw,50);
+	}
+function clear(c)
+	{
+	c.clearRect(0,0,width,height);
+	}
+var f=0;
+var keysDown = {};
+window.addEventListener('keydown', function(e) {
+    keysDown[e.keyCode] = true;
+});
+window.addEventListener('keyup', function(e) {
+    delete keysDown[e.keyCode];
+});
+
+	function redraw()
+	{
+		
+	if(x<=750 &&f==0)
+	{
+	f=0;
+	clear(draw);
+	
+	draw.beginPath();
+	draw.arc(x,50,40,i*Math.PI,(2-j)*Math.PI);
+
+	draw.fillStyle = 'green';
+	 draw.fill();
+	 draw.lineWidth = 5;
+      draw.strokeStyle = '#003300';
+      
+	draw.stroke();
+	i=i+0.1;
+	j=j-0.1;
+	x=x+10;
+	}
+	else if(x>0)
+	{
+	f=1;
+	clear(draw);
+	draw.beginPath();
+	draw.arc(x,50,40,i*Math.PI,(2-j)*Math.PI);
+	draw.fillStyle = 'green';
+	 draw.fill();
+	draw.stroke();
+	i=i+0.1;
+	j=j-0.1;
+	x=x-10;
+	}
+	else if(x==0)
+	{
+	f=0;
+	}
+	
+	}
+</script>
+<body onLoad="init()">
+<canvas id="mycanvas" width="750" height="350" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+</body>
+</html>

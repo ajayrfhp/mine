@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>music player</music>
+	<script type="text/javascript">
+	function playaudio()
+		{
+		if(window.HTMLAudioElement)
+			{
+
+				var odio=document.getElementById("myaudio");
+				var btn=document.getElementById("play");
+				var fle=document.getElementById('myfile');
+				if(odio.paused)
+					{
+					odio.play();
+					btn.textContext="Pause";
+					}
+				else
+					{
+					odio.pause();
+					btn.textContext="Play";
+					}
+			}
+		}
+	</script>
+	</head>
+
+<body>
+	<p>
+	<input type="file" name="myfile" value="choose song"/>
+</p>
+<audio id="myaudio">
+html5 not supported
+</audio>
+<button id="play" onclick="playaudio();">
+play
+</button>
+</body>
+</html>

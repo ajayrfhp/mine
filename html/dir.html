@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<input type="file" id="myfile" webkitdirectory />
+<Script type="text/javascript">
+// Creates a file if it doesn't exist.
+// Throw an error if a file already exists with the same name.
+/*
+var writeFile = function(parentDirectory, file) {
+  parentDirectory.getFile(file.name, {create: true, exclusive: true},
+      function(fileEntry) {
+
+        // Write the file. write() can take a File or Blob.
+        fileEntry.createWriter(function(fileWriter) {
+          fileWriter.write(file);
+        }, onError);
+
+      },
+      onError
+  );
+};
+*/
+document.querySelector("#myfile").onchange = function(e) {
+  for (var i = 0, f; f = e.target.files[i]; ++i) {
+    console.log(f.webkitRelativePath);
+  }
+};
+</script>
+</html>

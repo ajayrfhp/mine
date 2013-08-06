@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<script type="text/javascript">
+var canvas;
+var draw;
+var width;
+var height;
+var x=50;
+var y=50;
+var dx=0.5;
+var dy=0.5;
+function init()
+	{
+	canvas=document.getElementById('mycanvas');
+	height=canvas.height;
+	width=canvas.width;
+	draw=canvas.getContext('2d');
+	setInterval(redraw,50);
+	}
+function clear(c)
+	{
+	c.clearRect(0,0,width,height);
+	}
+
+function doKeyDown(evt){
+alert('dasdasd');
+switch (evt.keyCode) {
+case 38:  /* Up arrow was pressed */
+if (y - dy > 0){
+y -= dy;
+}
+break;
+case 40:  /* Down arrow was pressed */
+if (y + dy < height){
+y += dy;
+}
+break;
+case 37:  /* Left arrow was pressed */
+if (x - dx > 0){
+x -= dx;
+}
+break;
+case 39: 
+if (x + dx <width){
+x += dx;
+}
+break;
+}
+}
+
+	function redraw()
+	{
+		f=0;
+	clear(draw);
+	
+	draw.beginPath();
+	draw.arc(x,y,40,0,(2)*Math.PI);
+
+	draw.fillStyle = 'green';
+	 draw.fill();
+	 draw.lineWidth = 5;
+      draw.strokeStyle = '#003300';
+      
+	draw.stroke();
+	}
+	window.addEventListener('keydown',doKeyDown,true);
+</script>
+<body onLoad="init()">
+<canvas id="mycanvas" width="750" height="350" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+</body>
+</html>

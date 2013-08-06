@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<script type="text/javascript">
+var canvas;
+var draw;
+var width;
+var height;
+var x=10;
+var y=10;
+var i=0;
+var j=0.1;
+function init()
+	{
+	canvas=document.getElementById('mycanvas');
+	height=canvas.height;
+	width=canvas.width;
+	draw=canvas.getContext('2d');
+	setInterval(redraw,50);
+	}
+function clear(c)
+	{
+	c.clearRect(0,0,width,height);
+	}
+function redraw()
+	{
+	clear(draw);
+	draw.beginPath();
+	draw.arc(50,50,40,i*Math.PI,(2-j)*Math.PI);
+	draw.stroke();
+	i=i+0.1;
+	j=j-0.1;
+	alert(j);
+	x=x+10;
+	}
+</script>
+<body onLoad="init()">
+<canvas id="mycanvas" width="750" height="650" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+</body>
+</html>

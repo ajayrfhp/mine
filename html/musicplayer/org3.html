@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<style>
+div.e{
+margin-left:350px;
+
+}
+
+div.r
+{
+background-color:#e0ffff;
+margin:0;
+padding:0;
+float:left;
+width:70px;
+height:50px;
+border: 5px outset #b0c4de;
+text-align:center;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: moz-none;
+-ms-user-select: none;
+user-select: none;
+cursor:default;
+}
+table,td
+{
+border-collapse:collapse;
+margin-top:50px;
+margin-left:400px;
+
+}
+html
+{
+background-color:black;}
+</style>
+  <head>
+       <script type="text/javascript">
+function init()
+{              
+	localStorage.location=localStorage.location||"C:\\Users\\Abhinaya\\Desktop\\abhi\\~~songs";
+	document.getElementById('udiofile').value=localStorage.location;
+}
+var currentFile=""; 	
+	   function playAudio() {
+            if (window.HTMLAudioElement) {
+                
+                    var odio = document.getElementById('myaudio');
+                    var btn = document.getElementById('play'); 
+                    var odioURL = document.getElementById('udiofile'); 
+                    if (odioURL.value !== currentFile) {
+                        odio.src = odioURL.value;
+                        currentFile = odioURL.value;                       
+						localStorage.location=odio.src;
+						sessionStorage.f=1;
+					var a=document.getElementById('photo');
+					var x=odioURL.value.lastIndexOf('/');
+					if(x!=-1)
+					{
+					var b=odioURL.value.slice(0,x);
+					var x=b+"/folder.jpg";
+					a.src=x;
+					}
+					else
+						{
+						var x=odioURL.value.lastIndexOf('\\');
+						var b=odioURL.value.slice(0,x);
+					var x=b+"/folder.jpg";
+					a.src=x;
+				
+						}
+					}
+				    
+					if (odio.paused) {
+                        odio.play();
+                        btn.textContent = "Pause";
+                    }
+                    else {
+                        odio.pause();
+                        btn.textContent = "Play";
+                    }
+                
+                 }
+            }      
+		function voli()
+			{
+			var odio = document.getElementById('myaudio');
+			if(odio.volume!=1)
+			{
+			odio.volume+=0.1;
+			}
+			}
+		function vold()
+			{
+			var odio = document.getElementById('myaudio');
+			if(odio.volume!=0)
+			{
+			odio.volume-=0.1;
+			}
+			}
+		function restartAudio()
+			{
+			var odio = document.getElementById('myaudio');
+			odio.currentTime=0;
+			}
+			function fastforwardAudio()
+			{
+			var odio = document.getElementById('myaudio');
+			odio.currentTime+=25;
+			}
+			function rewindAudio()
+			{
+			var odio = document.getElementById('myaudio');
+			odio.currentTime-=25;
+			}	
+			function fav()
+			{
+			sessionStorage.fav=sessionStorage.fav||document.getElementById('udiofile').value; 
+			sessionStorage.flag=++sessionStorage.flag||1;
+			if(sessionStorage.flag!=1)
+				{
+				sessionStorage.fav=sessionStorage.fav+"?"+document.getElementById('udiofile').value; 
+								}
+			alert(sessionStorage.fav);
+
+			}
+			function disfav()
+			{
+			if(sessionStorage.flag>1)
+			{
+			var x=sessionStorage.fav.split('?');
+			i=0;
+			while(i<sessionStorage.flag)
+				{
+				var z=confirm("play::"+x[i],"");
+				if(z==true)
+					{
+					 var odioURL = document.getElementById('udiofile');
+						odioURL.value=x[i];
+					break;
+					}
+				i=i+1;
+				}
+			}	
+			}
+			
+		</script>
+  </head>
+  
+  <body onload="init()">
+    	
+	
+	<table>
+		<tr>
+		<td>
+		<img height="300px" width="500px" src="" id="photo">
+		</img>
+		</td>
+		</tr>
+	<tr>
+	<td>
+   <div id="vi" class="r" onclick="voli()" />+
+   </div>
+	</td>
+	<td>
+	<div id="vi" class="r" onclick="vold()" />-
+   </div>
+   </td>
+   </tr>
+   
+	<tr>
+	<div class="e">
+      <input type="text" id="udiofile" size="80" value="" />
+    </div>
+	</tr>
+    
+	<audio id="myaudio">
+      HTML5 audio not supported
+    </audio>
+    <tr>
+	<td>
+	<div id="play" class="r"  onclick="playAudio();">
+      Play
+    </div>
+	</td>
+	<td>
+	<div id="fastfwd" class="r"  onclick="fastforwardAudio();">
+      fast forward
+    </div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<div id="restart" class="r"  onclick="restartAudio();">
+      restart
+    </div>
+	</td>
+	<td>
+	<div id="rewind" class="r"  onclick="rewindAudio();">
+      rewind
+    </div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<div id="fav" class="r"  onclick="fav();">
+      Add to fav ;)
+    </div>
+		</td>
+	<td>
+	<div id="dfav" class="r"  onclick="disfav();">
+      dis fav ;)
+    </div>
+		</td>	
+	</tr>
+
+  </table>
+  <input type="file" name="file"  id="file" value="browse and get the location" /> 
+  </body>
+</html>
+

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<canvas id="mycanvas" width="2000" height="1000">ur browser does not support canvas</canvas>
+<script>
+i=100;
+var timer=setInterval(function()
+{
+var c=document.getElementById('mycanvas');
+var x=c.getContext("2d");
+
+x.moveTo(i,75);
+x.arc(i,75,50,0,2*Math.PI);
+i=i+1;
+x.stroke();
+}
+,500);
+
+
+</script>
+</body>
+</html>

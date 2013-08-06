@@ -1,0 +1,18 @@
+<html>
+<Script type="text/javascript">
+function onFs(fs) {
+fs.root.getFile('log.txt', {create: true, exclusive: true},
+function(fileEntry) {
+// fileEntry.isFile === true
+// fileEntry.name == 'log.txt'
+// fileEntry.fullPath == '/log.txt'
+fileEntry.getMetaData(function(md) {
+console.log(md.modificationTime.toDateString());
+}, onError);
+},
+onError
+);
+}
+window.requestFileSystem(TEMPORARY, 1024*1024 /*1MB*/, onFs, onError);
+</script>
+</html>
