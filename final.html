@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+var canvas = null;
+var img = null;
+var ctx = null;
+var imageReady = false;
+var x;
+function onload() {
+  canvas = document.getElementById('mycanvas');
+  ctx = canvas.getContext("2d");
+  img = new Image();
+  img.src = 'char9.png';
+  img.onload = loaded();
+  resize();
+x=0;
+  }
+function loaded() {
+  imageReady = true;
+   setTimeout( update,8000 / 60 );
+}
+function resize() {
+  canvas.width = canvas.parentNode.clientWidth;
+  canvas.height = canvas.parentNode.clientHeight;
+  redraw();
+}
+var frame=0;
+function update()
+	{
+	redraw();
+	frame++;
+	if(frame>=4)frame=0;
+	setTimeout(update,8000/60);
+	}
+function redraw() {
+  ctx.fillStyle = '#000000';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  if (imageReady)
+  {
+ ctx.drawImage(img,130*frame, 0,130, 72,
+                      x, canvas.height/2 - 48, 130,72);
+	}
+					  x+=20;
+					  }		
+</script>
+	<title></title>
+</head>
+<body style='position: absolute; padding:0; margin:0; height: 100%; width:100%' onload="onload()" onresize="resize()">
+<canvas id="mycanvas"></canvas>
+</body>
+</html>
