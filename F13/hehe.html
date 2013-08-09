@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+var canvas = null;
+var img = null;
+var ctx = null;
+var imageReady = false;
+var x,y;
+function onload() {
+  canvas = document.getElementById('mycanvas');
+  ctx = canvas.getContext("2d");
+   img = new Image();
+  img.src = 'zombie2.png';
+  img.onload = loaded();
+  resize();
+  x=30;
+y=300;
+  }
+function loaded() {
+  imageReady = true;
+   setTimeout( update,50000 / 60 );
+}
+function resize() {
+  canvas.width = canvas.parentNode.clientWidth;
+  canvas.height = canvas.parentNode.clientHeight;
+  redraw();
+}
+var frame=0;
+function update()
+	{
+	redraw();
+	frame++;
+	if(frame>=4)frame=1;
+	setTimeout(update,50000/60);
+	}
+function redraw() {
+  ctx.fillStyle = '#00FFFF';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  if (imageReady)
+  {
+ ctx.drawImage(img,42*frame,255,42,60,
+                      x,y,200,150);
+	}
+					  x+=5;
+					  y-=10;
+					  }		
+</script>
+	<title></title>
+</head>
+<body style='position: absolute; padding:0; margin:0; height: 100%; width:100%' onload="onload()" onresize="resize()">
+<canvas id="mycanvas"></canvas>
+</body>
+</html>
