@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+var canvas = null;
+var img = null;
+var ctx = null;
+var imageReady = false;
+var x,y;
+function onload() {
+  canvas = document.getElementById('mycanvas');
+  ctx = canvas.getContext("2d");
+   img = new Image();
+  img.src = 'attack.png';
+  img.onload = loaded();
+  resize();
+  x=30;
+y=300;
+  }
+function loaded() {
+  imageReady = true;
+   setTimeout( update,5000/ 60 );
+}
+function resize() {
+  canvas.width = canvas.parentNode.clientWidth;
+  canvas.height = canvas.parentNode.clientHeight;
+  redraw();
+}
+var frame=0;
+function update()
+	{
+	redraw();
+	frame++;
+	if(frame>=8)frame=1;
+	setTimeout(update,5000/60);
+	}
+function redraw() {
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  if (imageReady)
+  {
+ ctx.drawImage(img,82*frame,440,76,100,
+                      x,100,200,150);
+	}
+					  x+=50;
+					  y-=10;
+					  }		
+
+</script>
+	<title></title>
+</head>
+<body style='position: absolute; padding:0; margin:0; height: 100%; width:100%' onload="onload()" onresize="resize()">
+<canvas id="mycanvas"></canvas>
+</body>
+</html>
